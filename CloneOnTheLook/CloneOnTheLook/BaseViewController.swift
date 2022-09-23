@@ -15,8 +15,23 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseView.maleButton.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
+        baseView.femaleButton.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
+        baseView.backButton.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
     }
-
+    
+    @objc func buttonDidTap() {
+        baseView.coverView.isHidden.toggle()
+        baseView.coverBaseStackView.isHidden.toggle()
+        baseView.backButton.isHidden.toggle()
+    }
+    
+    @objc func backButtonDidTap() {
+//        baseView.coverView.isHidden = false
+//        baseView.baseStackView.isHidden = false
+//        baseView.backButton.isHidden = true
+        print("터치")
+    }
 
 }
 

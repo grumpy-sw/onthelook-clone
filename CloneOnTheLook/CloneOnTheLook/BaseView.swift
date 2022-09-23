@@ -12,7 +12,7 @@ class BaseView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         //layer.opacity = 0.5
-        backgroundColor = .orange
+        backgroundColor = .black
         setSubViews()
         setLayoutConstraints()
     }
@@ -21,13 +21,14 @@ class BaseView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let coverView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
-        view.layer.opacity = 0.5
-        return view
+    let backButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+        button.isHidden = true
+        return button
     }()
+    
     let baseStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +36,37 @@ class BaseView: UIView {
         stackView.spacing = 20
         return stackView
     }()
-    let descriptionLabel: UILabel = {
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "마음에 드는 스타일을 선택해주세요"
+        label.textColor = .white
+        label.font = .preferredFont(forTextStyle: .headline)
+        return label
+    }()
+    let subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "onthelook이 취향을 분석하고\n좋아할 만한 스타일을 추천해드릴게요!"
+        label.numberOfLines = 0
+        label.textColor = .gray
+        label.font = .preferredFont(forTextStyle: .subheadline)
+        return label
+    }()
+    
+    let coverView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black
+        view.layer.opacity = 0.5
+        return view
+    }()
+    let coverBaseStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        return stackView
+    }()
+    let coverDescriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "어떤 성별로 보시겠어요?"
         label.textColor = .white
@@ -72,31 +103,47 @@ class BaseView: UIView {
     }()
     
     func setSubViews() {
-        baseStackView.addArrangedSubview(descriptionLabel)
-        baseStackView.addArrangedSubview(buttonStackView)
+        baseStackView.addArrangedSubview(titleLabel)
+        baseStackView.addArrangedSubview(subtitleLabel)
+        
+        coverBaseStackView.addArrangedSubview(coverDescriptionLabel)
+        coverBaseStackView.addArrangedSubview(buttonStackView)
         
         buttonStackView.addArrangedSubview(maleButton)
         buttonStackView.addArrangedSubview(femaleButton)
         
-        addSubview(coverView)
+        addSubview(backButton)
         addSubview(baseStackView)
-        
+        addSubview(coverView)
+        addSubview(coverBaseStackView)
     }
     
     func setLayoutConstraints() {
+        NSLayoutConstraint.activate([
+            backButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 80),
+            backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20)
+        ])
+        
+        NSLayoutConstraint.activate([
+            baseStackView.topAnchor.constraint(equalTo: self.backButton.bottomAnchor, constant: 30),
+            baseStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            baseStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            //baseStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+        
         NSLayoutConstraint.activate([
             coverView.topAnchor.constraint(equalTo: self.topAnchor),
             coverView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             coverView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             coverView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
-        
+
         NSLayoutConstraint.activate([
-            baseStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 300),
-            baseStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            baseStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
+            coverBaseStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 300),
+            coverBaseStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            coverBaseStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
         ])
-        
+
         NSLayoutConstraint.activate([
             maleButton.heightAnchor.constraint(equalToConstant: 50),
             femaleButton.heightAnchor.constraint(equalToConstant: 50)
