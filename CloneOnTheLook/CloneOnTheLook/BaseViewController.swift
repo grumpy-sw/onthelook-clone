@@ -8,13 +8,23 @@
 import UIKit
 
 class BaseViewController: UIViewController {
+    
     let baseView = BaseView()
+    
     override func loadView() {
         self.view = baseView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setButtonAction()
+        setCollectionViewCell()
+        setCollectionViewDelegate()
+    }
+    
+    
+    
+    private func setButtonAction() {
         baseView.maleButton.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
         baseView.femaleButton.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
         baseView.backButton.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
@@ -26,12 +36,31 @@ class BaseViewController: UIViewController {
         baseView.backButton.isHidden.toggle()
     }
     
-    @objc func backButtonDidTap() {
-//        baseView.coverView.isHidden = false
-//        baseView.baseStackView.isHidden = false
-//        baseView.backButton.isHidden = true
-        print("터치")
+    private func setCollectionViewCell() {
+        baseView.collectionView.register(BaseCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: BaseCollectionViewCell.identifier)
     }
+    
+    private func setCollectionViewDelegate() {
+        baseView.collectionView.delegate = self
+        baseView.collectionView.dataSource = self
+    }
+}
 
+extension BaseViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 50
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BaseCollectionViewCell.identifier, for: indexPath) as? BaseCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width * 0.31, height: collectionView.frame.height * 0.3)
+    }
+    
 }
 

@@ -11,7 +11,6 @@ class BaseView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //layer.opacity = 0.5
         backgroundColor = .black
         setSubViews()
         setLayoutConstraints()
@@ -50,6 +49,19 @@ class BaseView: UIView {
         label.textColor = .gray
         label.font = .preferredFont(forTextStyle: .subheadline)
         return label
+    }()
+    let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.allowsMultipleSelection = false
+        collectionView.isPagingEnabled = true
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.backgroundColor = .black
+        return collectionView
     }()
     
     let coverView: UIView = {
@@ -105,6 +117,7 @@ class BaseView: UIView {
     func setSubViews() {
         baseStackView.addArrangedSubview(titleLabel)
         baseStackView.addArrangedSubview(subtitleLabel)
+        baseStackView.addArrangedSubview(collectionView)
         
         coverBaseStackView.addArrangedSubview(coverDescriptionLabel)
         coverBaseStackView.addArrangedSubview(buttonStackView)
@@ -128,11 +141,11 @@ class BaseView: UIView {
             baseStackView.topAnchor.constraint(equalTo: self.backButton.bottomAnchor, constant: 30),
             baseStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             baseStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            //baseStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            baseStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            coverView.topAnchor.constraint(equalTo: self.topAnchor),
+            coverView.topAnchor.constraint(equalTo: self.topAnchor, constant: 230),
             coverView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             coverView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             coverView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
