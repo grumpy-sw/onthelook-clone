@@ -15,6 +15,7 @@
 		4EB71E7E28DB66740002966C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EB71E7C28DB66740002966C /* LaunchScreen.storyboard */; };
 		4EC573C628E14CC100E9D3CE /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC573C528E14CC100E9D3CE /* BaseCollectionViewCell.swift */; };
 		4EC7979D28E41559000C936E /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC7979C28E41559000C936E /* PinterestLayout.swift */; };
+		4EC797A128E440F6000C936E /* BaseCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC797A028E440F6000C936E /* BaseCellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		4EB71E7F28DB66740002966C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EC573C528E14CC100E9D3CE /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		4EC7979C28E41559000C936E /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
+		4EC797A028E440F6000C936E /* BaseCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				4EB71E7528DB66740002966C /* BaseViewController.swift */,
 				4EACC67028DCA05D00E8A38E /* BaseView.swift */,
 				4EC573C528E14CC100E9D3CE /* BaseCollectionViewCell.swift */,
+				4EC797A028E440F6000C936E /* BaseCellModel.swift */,
 				4EACC66B28DC9CA400E8A38E /* Resources */,
 			);
 			path = CloneOnTheLook;
@@ -172,6 +175,7 @@
 				4EB71E7628DB66740002966C /* BaseViewController.swift in Sources */,
 				4EB71E7228DB66740002966C /* AppDelegate.swift in Sources */,
 				4EB71E7428DB66740002966C /* SceneDelegate.swift in Sources */,
+				4EC797A128E440F6000C936E /* BaseCellModel.swift in Sources */,
 				4EACC67128DCA05D00E8A38E /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

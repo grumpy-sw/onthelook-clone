@@ -64,6 +64,18 @@ class BaseView: UIView {
         collectionView.backgroundColor = .black
         return collectionView
     }()
+    let selectCompleteButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("5개 이상 선택해주세요", for: .normal)
+        button.setTitleColor(.systemGray2, for: .normal)
+        button.backgroundColor = .darkGray
+//        button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
+        button.isHidden = true
+        button.layer.cornerRadius = 8
+        return button
+    }()
     
     let coverView: UIView = {
         let view = UIView()
@@ -128,6 +140,7 @@ class BaseView: UIView {
         
         addSubview(backButton)
         addSubview(baseStackView)
+        addSubview(selectCompleteButton)
         addSubview(coverView)
         addSubview(coverBaseStackView)
     }
@@ -146,6 +159,13 @@ class BaseView: UIView {
         ])
         
         NSLayoutConstraint.activate([
+            selectCompleteButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25),
+            selectCompleteButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25),
+            selectCompleteButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 320),
+            selectCompleteButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        NSLayoutConstraint.activate([
             coverView.topAnchor.constraint(equalTo: self.topAnchor, constant: 230),
             coverView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             coverView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -154,8 +174,8 @@ class BaseView: UIView {
 
         NSLayoutConstraint.activate([
             coverBaseStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 300),
-            coverBaseStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            coverBaseStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
+            coverBaseStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25),
+            coverBaseStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25)
         ])
 
         NSLayoutConstraint.activate([

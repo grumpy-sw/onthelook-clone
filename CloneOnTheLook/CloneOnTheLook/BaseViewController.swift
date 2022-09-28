@@ -56,6 +56,7 @@ class BaseViewController: UIViewController {
         baseView.coverView.isHidden.toggle()
         baseView.coverBaseStackView.isHidden.toggle()
         baseView.backButton.isHidden.toggle()
+        baseView.selectCompleteButton.isHidden.toggle()
     }
     
     private func setCollectionViewCell() {
