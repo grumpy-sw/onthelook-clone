@@ -51,7 +51,8 @@ class BaseView: UIView {
         return label
     }()
     let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        //let layout = UICollectionViewFlowLayout()
+        let layout = PinterestLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false

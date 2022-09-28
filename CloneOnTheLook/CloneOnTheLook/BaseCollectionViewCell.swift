@@ -26,8 +26,9 @@ final class BaseCollectionViewCell: UICollectionViewCell {
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 8
+        //imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 15
+        imageView.layer.masksToBounds = true
         imageView.backgroundColor = .systemPurple
         return imageView
     }()
