@@ -10,7 +10,7 @@ import UIKit
 class BaseViewController: UIViewController {
     
     let baseView = BaseView()
-    var imageList: [UIImage] = []
+    var imageList: [BaseCellModel] = []
     
     override func loadView() {
         self.view = baseView
@@ -28,22 +28,12 @@ class BaseViewController: UIViewController {
     }
     
     private func setSampleImages() {
-        imageList.append(UIImage(named: "1")!)
-        imageList.append(UIImage(named: "2")!)
-        imageList.append(UIImage(named: "3")!)
-        imageList.append(UIImage(named: "4")!)
-        imageList.append(UIImage(named: "5")!)
-        imageList.append(UIImage(named: "6")!)
-        imageList.append(UIImage(named: "7")!)
-        imageList.append(UIImage(named: "8")!)
-        imageList.append(UIImage(named: "1")!)
-        imageList.append(UIImage(named: "2")!)
-        imageList.append(UIImage(named: "3")!)
-        imageList.append(UIImage(named: "4")!)
-        imageList.append(UIImage(named: "5")!)
-        imageList.append(UIImage(named: "6")!)
-        imageList.append(UIImage(named: "7")!)
-        imageList.append(UIImage(named: "8")!)
+        let pictures = ["1", "2", "3", "4", "5", "6", "7", "8"]
+        let users = ["@lee._.250", "@esmilk", "@__hyeokeo", "@zzong_10", "@dailydo_ri", "@s_habille", "@hakchan_sik", "@ho._.dongdong", "@55osh", "@good.leee", "@Dustin0507", "@daily.room_", "@mnm_j97h", "@se_woong._.park", "@seung.u97"]
+        
+        for index in 0..<53 {
+            imageList.append(BaseCellModel(image: UIImage(named: pictures[index % 8])!, user: users.randomElement()!))
+        }
     }
     
     private func setButtonAction() {
@@ -78,22 +68,24 @@ extension BaseViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BaseCollectionViewCell.identifier, for: indexPath) as? BaseCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let image = imageList[indexPath.item]
-        cell.imageView.image = image
         
+        let cellInfo = imageList[indexPath.item]
+        cell.setCellData(cellInfo)
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: collectionView.frame.width * 0.31, height: collectionView.frame.height * 0.3)
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? BaseCollectionViewCell {
+            cell.coverView.isHidden.toggle()
+        }
+    }
 }
 
 extension BaseViewController: PinterestLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         let cellWidth: CGFloat = (view.bounds.width - 4) / 3
-        let imageHeight = imageList[indexPath.item].size.height
-        let imageWidth = imageList[indexPath.item].size.width
+        let imageHeight = imageList[indexPath.item].image.size.height
+        let imageWidth = imageList[indexPath.item].image.size.width
         
         let imageRatio = imageHeight/imageWidth
         
