@@ -71,14 +71,15 @@ extension BaseViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BaseCollectionViewCell.identifier, for: indexPath) as? BaseCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
         let cellInfo = imageList[indexPath.item]
-        cell.setCellData(cellInfo)
+        cell.setCellData(cellInfo, selected[cellInfo.id]!)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? BaseCollectionViewCell {
+            let cellInfo = imageList[indexPath.item]
+            selected.updateValue(!selected[cellInfo.id]!, forKey: cellInfo.id)
             cell.coverView.isHidden.toggle()
         }
     }

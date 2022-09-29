@@ -99,9 +99,10 @@ final class BaseCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func setCellData(_ cellInfo: BaseCellModel) {
+    func setCellData(_ cellInfo: BaseCellModel, _ selected: Bool) {
         imageView.image = cellInfo.image
         idLabel.text = cellInfo.user
+        coverView.isHidden = !selected   // 선택하면(selected=true) -> isHidden=false
     }
 }
 
