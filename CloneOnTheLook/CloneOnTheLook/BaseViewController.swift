@@ -11,6 +11,8 @@ class BaseViewController: UIViewController {
     
     let baseView = BaseView()
     var imageList: [BaseCellModel] = []
+    var selected: [String: Bool] = [:]
+    var selectedItemCount: Int = 0
     
     override func loadView() {
         self.view = baseView
@@ -32,7 +34,8 @@ class BaseViewController: UIViewController {
         let users = ["@lee._.250", "@esmilk", "@__hyeokeo", "@zzong_10", "@dailydo_ri", "@s_habille", "@hakchan_sik", "@ho._.dongdong", "@55osh", "@good.leee", "@Dustin0507", "@daily.room_", "@mnm_j97h", "@se_woong._.park", "@seung.u97"]
         
         for index in 0..<53 {
-            imageList.append(BaseCellModel(image: UIImage(named: pictures[index % 8])!, user: users.randomElement()!))
+            imageList.append(BaseCellModel(id: String(index), image: UIImage(named: pictures[index % 8])!, user: users.randomElement()!))
+            selected.updateValue(false, forKey: String(index))
         }
     }
     

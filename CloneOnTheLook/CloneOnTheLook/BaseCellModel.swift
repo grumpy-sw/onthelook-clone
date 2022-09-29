@@ -8,6 +8,7 @@
 import UIKit
 
 struct BaseCellModel {
+    let id: String
     let image: UIImage
     let user: String
 }
