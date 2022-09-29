@@ -81,6 +81,11 @@ extension BaseViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let cellInfo = imageList[indexPath.item]
             selected.updateValue(!selected[cellInfo.id]!, forKey: cellInfo.id)
             cell.coverView.isHidden.toggle()
+            
+            selectedItemCount = selected.values.filter {
+                $0 == true
+            }.count
+            print(selectedItemCount)
         }
     }
 }
