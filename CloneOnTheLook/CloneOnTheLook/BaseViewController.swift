@@ -52,7 +52,7 @@ class BaseViewController: UIViewController {
     private func setButtonAction() {
         baseView.maleButton.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
         baseView.femaleButton.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
-        baseView.backButton.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
+        baseView.backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
     }
     
     @objc func buttonDidTap() {
@@ -60,6 +60,18 @@ class BaseViewController: UIViewController {
         baseView.coverBaseStackView.isHidden.toggle()
         baseView.backButton.isHidden.toggle()
         baseView.selectCompleteButton.isHidden.toggle()
+    }
+    
+    @objc func backButtonDidTap() {
+        baseView.coverView.isHidden.toggle()
+        baseView.coverBaseStackView.isHidden.toggle()
+        baseView.backButton.isHidden.toggle()
+        baseView.selectCompleteButton.isHidden.toggle()
+        baseView.updateButtonToSelectButton()
+        selected.keys.forEach {
+            selected.updateValue(false, forKey: $0)
+        }
+        baseView.collectionView.reloadData()
     }
     
     private func setCollectionViewCell() {
