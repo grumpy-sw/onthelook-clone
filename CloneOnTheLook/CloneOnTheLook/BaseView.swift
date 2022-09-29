@@ -70,7 +70,6 @@ class BaseView: UIView {
         button.setTitle("5개 이상 선택해주세요", for: .normal)
         button.setTitleColor(.systemGray2, for: .normal)
         button.backgroundColor = .darkGray
-//        button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.isHidden = true
         button.layer.cornerRadius = 8
@@ -182,5 +181,17 @@ class BaseView: UIView {
             maleButton.heightAnchor.constraint(equalToConstant: 50),
             femaleButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+    
+    func updateButtonToSelectButton() {
+        selectCompleteButton.setTitle("5개 이상 선택해주세요", for: .normal)
+        selectCompleteButton.setTitleColor(.systemGray2, for: .normal)
+        selectCompleteButton.backgroundColor = .darkGray
+    }
+    
+    func updateButtonToCompleteButton() {
+        selectCompleteButton.setTitle("선택 완료", for: .normal)
+        selectCompleteButton.setTitleColor(.black, for: .normal)
+        selectCompleteButton.backgroundColor = .white
     }
 }

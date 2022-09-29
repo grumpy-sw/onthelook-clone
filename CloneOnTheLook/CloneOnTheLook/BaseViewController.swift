@@ -15,11 +15,11 @@ class BaseViewController: UIViewController {
     var selectedItemCount: Int = 0 {
         didSet {
             if selectedItemCount >= 5 {
-                
+                baseView.updateButtonToCompleteButton()
             }
             
             if oldValue >= 5, selectedItemCount < 5 {
-                
+                baseView.updateButtonToSelectButton()
             }
         }
     }
