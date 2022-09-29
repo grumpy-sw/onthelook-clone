@@ -12,7 +12,17 @@ class BaseViewController: UIViewController {
     let baseView = BaseView()
     var imageList: [BaseCellModel] = []
     var selected: [String: Bool] = [:]
-    var selectedItemCount: Int = 0
+    var selectedItemCount: Int = 0 {
+        didSet {
+            if selectedItemCount >= 5 {
+                
+            }
+            
+            if oldValue >= 5, selectedItemCount < 5 {
+                
+            }
+        }
+    }
     
     override func loadView() {
         self.view = baseView
@@ -85,7 +95,6 @@ extension BaseViewController: UICollectionViewDelegate, UICollectionViewDataSour
             selectedItemCount = selected.values.filter {
                 $0 == true
             }.count
-            print(selectedItemCount)
         }
     }
 }
